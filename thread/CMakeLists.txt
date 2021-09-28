@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11.0)
-project(thread VERSION 1.0.0)
+project(Thread VERSION 1.0.0)
 
 add_executable(thread thread1.c)
 target_link_libraries(thread pthread)
@@ -18,3 +18,10 @@ target_link_libraries(concurrentThreads2 pthread)
 
 add_executable(concurrentThreads3 concurrentThreads3.c)
 target_link_libraries(concurrentThreads3 pthread)
+
+target_clangformat_setup(thread)
+target_clangformat_setup(thread_sum)
+target_clangformat_setup(multithreading)
+target_clangformat_setup(concurrentThreads1)
+target_clangformat_setup(concurrentThreads2)
+target_clangformat_setup(concurrentThreads3)

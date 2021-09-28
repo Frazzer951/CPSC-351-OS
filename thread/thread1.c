@@ -6,26 +6,23 @@
 #include <unistd.h>
 
 
+void * thread_func( void * vargp ) { pthread_exit( (void *) 42 ); }
 
-void* thread_func(void* vargp) {
+int main()
+{
+  int       i = 29;
+  pthread_t tid_original_thread;
+  tid_original_thread = pthread_self();
 
-	pthread_exit((void*)42);
-}
+  pthread_t tid_created_thread;
 
-int main() {
-	int i = 29;
-	pthread_t tid_original_thread;
-	tid_original_thread = pthread_self();
+  printf( " thread id of original thread %lu\n", tid_original_thread );
 
-	pthread_t tid_created_thread;
+  pthread_create( &tid_created_thread, NULL, thread_func, NULL );
 
-	printf(" thread id of original thread %lu\n", tid_original_thread);
+  printf( " thread id of created thread %lu\n", tid_created_thread );
 
-	pthread_create(&tid_created_thread, NULL, thread_func, NULL);
+  pthread_join( tid_created_thread, (void **) &i );
 
-	printf(" thread id of created thread %lu\n", tid_created_thread);
-
-	pthread_join(tid_created_thread, (void**)&i);
-
-	printf("%d\n", i);
+  printf( "%d\n", i );
 }
