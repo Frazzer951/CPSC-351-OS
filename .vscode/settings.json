@@ -3,5 +3,8 @@
         "ostream": "cpp",
         "ipc.h": "c",
         "pthread.h": "c"
-    }
+    },
+    "cSpell.words": [
+        "fibn"
+    ]
 }
