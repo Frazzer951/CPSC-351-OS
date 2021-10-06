@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
-int main( int argc, char ** argv )
+int main( int  /*argc*/, char **  /*argv*/ )
 {
   /* Launch the program md5sum to compute the MD5 hash of file
    * /bin/ls. Also, get a file pointer representing the output
@@ -11,7 +11,7 @@ int main( int argc, char ** argv )
   FILE * progOutput = popen( "md5sum /bin/ls", "r" );
 
   /* Make sure that popen succeeded */
-  if( !progOutput )
+  if( progOutput == nullptr )
   {
     perror( "popen" );
     exit( -1 );

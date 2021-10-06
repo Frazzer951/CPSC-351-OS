@@ -3,10 +3,10 @@
  * function in order to enable parent child communication
  */
 
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
 using namespace std;
@@ -129,7 +129,7 @@ int main()
     cout << "here 2" << endl;
 
     /* Wait for the child process to terminate */
-    if( wait( NULL ) < 0 )
+    if( wait( nullptr ) < 0 )
     {
       perror( "wait" );
       exit( -1 );

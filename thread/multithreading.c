@@ -4,7 +4,7 @@
 
 void * print_message_function( void * ptr )
 {
-  char * message;
+  char * message = NULL;
   message = (char *) ptr;
   printf( "%s \n", message );
   pthread_exit( (void *) 42 );
@@ -13,10 +13,12 @@ void * print_message_function( void * ptr )
 
 int main()
 {
-  pthread_t thread1, thread2;
+  pthread_t thread1;
+  pthread_t thread2;
   char *    message1 = "Thread 1";
   char *    message2 = "Thread 2";
-  int       iret1, iret2;
+  int       iret1;
+  int       iret2;
 
   /* Create independent threads each of which will execute function */
 

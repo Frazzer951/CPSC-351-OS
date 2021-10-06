@@ -40,7 +40,8 @@ void *                   numeric( void * param );
 
 int main( int argc, char * argv[] )
 {
-  pthread_t p1, p2;
+  pthread_t p1;
+  pthread_t p2;
 
   if( argc != 2 )
   {
@@ -48,11 +49,11 @@ int main( int argc, char * argv[] )
     return -1;
   }
 
-  pthread_create( &p1, NULL, alpha, argv[1] );
-  pthread_create( &p2, NULL, numeric, argv[1] );
+  pthread_create( &p1, nullptr, alpha, argv[1] );
+  pthread_create( &p2, nullptr, numeric, argv[1] );
 
-  pthread_join( p1, NULL );
-  pthread_join( p2, NULL );
+  pthread_join( p1, nullptr );
+  pthread_join( p2, nullptr );
 }
 
 std::vector<std::string> split( std::string str, char delim )
@@ -83,10 +84,10 @@ void * alpha( void * param )
 
   for( std::string s : words )
   {
-    if( isalpha( s[0] ) ) { fprintf( stdout, "alpha: %s\n", s.c_str() ); }
+    if( isalpha( s[0] ) != 0 ) { fprintf( stdout, "alpha: %s\n", s.c_str() ); }
   }
 
-  pthread_exit( 0 );
+  pthread_exit( nullptr );
 }
 
 void * numeric( void * param )
@@ -95,8 +96,8 @@ void * numeric( void * param )
 
   for( std::string s : words )
   {
-    if( isdigit( s[0] ) ) { fprintf( stdout, "numeric: %s\n", s.c_str() ); }
+    if( isdigit( s[0] ) != 0 ) { fprintf( stdout, "numeric: %s\n", s.c_str() ); }
   }
 
-  pthread_exit( 0 );
+  pthread_exit( nullptr );
 }

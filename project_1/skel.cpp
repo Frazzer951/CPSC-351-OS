@@ -1,8 +1,8 @@
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <fstream>
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -71,7 +71,7 @@ void computeHash( const string & hashProgName )
   /* Call Popen with cmdLine */
   FILE * progOutput = popen( cmdLine.c_str(), "r" );
 
-  if( !progOutput )
+  if( progOutput == nullptr )
   {
     perror( "popen" );
     exit( -1 );
@@ -117,10 +117,10 @@ int main( int argc, char ** argv )
   string fileName( argv[1] );
 
   /* The process id */
-  pid_t pid;
+  pid_t pid = 0;
 
   /* Run a program for each type of hashing algorithm hash algorithm */
-  for( int hashAlgNum = 0; hashAlgNum < HASH_PROG_ARRAY_SIZE; ++hashAlgNum )
+  for(const auto & hashProg : hashProgs)
   {
     /* Create a parent-to-child pipe */
     if( pipe( parentToChildPipe ) < 0 )
@@ -161,7 +161,7 @@ int main( int argc, char ** argv )
       }
 
       /* Compute the hash */
-      computeHash( hashProgs[hashAlgNum] );
+      computeHash( hashProg );
     }
 
     /* I am the parent */
@@ -220,12 +220,12 @@ int main( int argc, char ** argv )
     }
 
     /* Print the hash value */
-    fprintf( stdout, "%s HASH VALUE: %s\n", hashProgs[hashAlgNum].c_str(), hashValue );
+    fprintf( stdout, "%s HASH VALUE: %s\n", hashProg.c_str(), hashValue );
     fflush( stdout );
 
 
     /* Wait for the program to terminate */
-    if( wait( NULL ) < 0 )
+    if( wait( nullptr ) < 0 )
     {
       perror( "wait" );
       exit( -1 );

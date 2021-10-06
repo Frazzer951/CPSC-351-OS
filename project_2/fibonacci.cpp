@@ -28,7 +28,7 @@ void * fibonacci( void * param );
 
 int main( int argc, char * argv[] )
 {
-  pthread_t p1;
+  pthread_t p1 = 0;
 
   if( argc != 2 )
   {
@@ -36,15 +36,15 @@ int main( int argc, char * argv[] )
     return -1;
   }
 
-  if( !isdigit( argv[1][0] ) )
+  if( isdigit( argv[1][0] ) == 0 )
   {
     fprintf( stderr, "%s is not a valid integer\n", argv[1] );
     return -1;
   }
 
-  pthread_create( &p1, NULL, fibonacci, argv[1] );
+  pthread_create( &p1, nullptr, fibonacci, argv[1] );
 
-  pthread_join( p1, NULL );
+  pthread_join( p1, nullptr );
 
   printf( "Fibonacci sequence: " );
 
@@ -68,5 +68,5 @@ void * fibonacci( void * param )
     i++;
   }
 
-  pthread_exit( 0 );
+  pthread_exit( nullptr );
 }

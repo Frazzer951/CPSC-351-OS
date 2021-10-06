@@ -6,8 +6,8 @@
 
 int main()
 {
-  int   i;
-  pid_t id;
+  int   i = 0;
+  pid_t id = 0;
   id = fork();
   fprintf( stderr, "This is process %d \n", getpid() );
   fprintf( stderr, "id %d\n", id );

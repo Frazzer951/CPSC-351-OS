@@ -8,7 +8,7 @@ int main( int argc, char ** argv )
 
 {
   int   a = 0;
-  pid_t child_pid;
+  pid_t child_pid = 0;
 
   child_pid = fork();
 
@@ -16,7 +16,7 @@ int main( int argc, char ** argv )
 
   if( child_pid == 0 )
   {
-    pid_t grand_child_pid;
+    pid_t grand_child_pid = 0;
     grand_child_pid = fork();
     printf( "Here ?\n" );
     a++;

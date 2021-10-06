@@ -1,7 +1,7 @@
+#include <cstdio>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -90,7 +90,7 @@ void childFunc()
   exit( 0 );
 }
 
-int main( int argc, char ** argv )
+int main( int  /*argc*/, char **  /*argv*/ )
 {
   /* Create a parent-to-child pipe */
   if( pipe( parentToChildPipe ) < 0 )
@@ -109,7 +109,7 @@ int main( int argc, char ** argv )
 
 
   /* The process id */
-  pid_t pid;
+  pid_t pid = 0;
 
   /* Fork a child process and save the id */
   if( ( pid = fork() ) < 0 )
@@ -183,7 +183,7 @@ int main( int argc, char ** argv )
   }
 
   /* Wait for the child to exit */
-  if( wait( NULL ) < 0 )
+  if( wait( nullptr ) < 0 )
   {
     perror( "wait" );
     exit( -1 );

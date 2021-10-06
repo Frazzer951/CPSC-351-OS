@@ -20,7 +20,7 @@ void child()
 int main( int argc, char ** argv )
 {
   /* The process id of the child */
-  pid_t child_pid;
+  pid_t child_pid = 0;
 
   /* If the fork failed, then terminate. Otherwise, save the
    * value returned by fork().

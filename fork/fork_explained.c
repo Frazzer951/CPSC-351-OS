@@ -7,7 +7,7 @@
 
 int main()
 {
-  pid_t pid;
+  pid_t pid = 0;
   /* fork another process */
   pid = fork();
   fprintf( stderr, "This is process %d\n", getpid() );

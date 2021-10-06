@@ -25,7 +25,8 @@ void * thread_func( void * arg )
 
 int main( int argc, char * argv[] )
 {
-  pthread_t p1, p2;
+  pthread_t p1;
+  pthread_t p2;
 
   pthread_create( &p1, NULL, thread_func, "thread1" );
   pthread_create( &p2, NULL, thread_func, "thread2" );
