@@ -7,7 +7,7 @@ using namespace std;
 /* a value of type pid_t.  This pid_t is a special type for process ids. */
 /* It's equivalent to int. */
 
-int main( )
+int main()
 {
   for( int i = 0; i < 5; i++ )
   {

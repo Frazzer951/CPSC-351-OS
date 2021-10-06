@@ -90,7 +90,7 @@ void childFunc()
   exit( 0 );
 }
 
-int main( int  /*argc*/, char **  /*argv*/ )
+int main( int /*argc*/, char ** /*argv*/ )
 {
   /* Create a parent-to-child pipe */
   if( pipe( parentToChildPipe ) < 0 )

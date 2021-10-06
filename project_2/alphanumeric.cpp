@@ -40,8 +40,8 @@ void *                   numeric( void * param );
 
 int main( int argc, char * argv[] )
 {
-  pthread_t p1;
-  pthread_t p2;
+  pthread_t p1 = 0;
+  pthread_t p2 = 0;
 
   if( argc != 2 )
   {

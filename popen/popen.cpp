@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cstring>
 
-int main( int  /*argc*/, char **  /*argv*/ )
+int main( int /*argc*/, char ** /*argv*/ )
 {
   /* Launch the program md5sum to compute the MD5 hash of file
    * /bin/ls. Also, get a file pointer representing the output

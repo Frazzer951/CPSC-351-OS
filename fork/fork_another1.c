@@ -6,9 +6,9 @@
 
 int main()
 {
-  int   i = 0;
+  int   i  = 0;
   pid_t id = 0;
-  id = fork();
+  id       = fork();
   fprintf( stderr, "This is process %d \n", getpid() );
   fprintf( stderr, "id %d\n", id );
   printf( "Hello\n" );

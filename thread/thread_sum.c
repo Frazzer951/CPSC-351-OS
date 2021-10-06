@@ -10,8 +10,8 @@ void * runner( void * param ); /* the thread */
 
 int main( int argc, char * argv[] )
 {
-  pthread_t      tid = 0;  /* the thread identifier */
-  pthread_attr_t attr; /* set of thread attributes */
+  pthread_t      tid = 0; /* the thread identifier */
+  pthread_attr_t attr;    /* set of thread attributes */
 
   fprintf( stderr, "process id %d \n", getpid() );
   if( argc != 2 )
@@ -40,9 +40,9 @@ int main( int argc, char * argv[] )
 /* The thread will begin control in this function */
 void * runner( void * param )
 {
-  int i;
+  int i     = 0;
   int upper = atoi( param );
-  sum = 0;
+  sum       = 0;
   fprintf( stderr, "process id %d \n", getpid() );
   for( i = 1; i <= upper; i++ ) sum += i;
 

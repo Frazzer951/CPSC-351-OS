@@ -120,7 +120,7 @@ int main( int argc, char ** argv )
   pid_t pid = 0;
 
   /* Run a program for each type of hashing algorithm hash algorithm */
-  for(const auto & hashProg : hashProgs)
+  for( const auto & hashProg : hashProgs )
   {
     /* Create a parent-to-child pipe */
     if( pipe( parentToChildPipe ) < 0 )
