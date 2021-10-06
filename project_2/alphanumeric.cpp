@@ -1,6 +1,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <pthread.h>
+#include <string>
+#include <vector>
 
 /*
 PART B: Printing Alpha Numeric Words [ 100 points ]
@@ -32,4 +34,69 @@ other pthread functions available to you for this project, and use them if you l
 them. The name of this program must be alphanumeric.cpp
 */
 
-int main( int argc, char * argv[] ) { return 0; }
+std::vector<std::string> split( std::string str, char delim = ' ' );
+void *                   alpha( void * param );
+void *                   numeric( void * param );
+
+int main( int argc, char * argv[] )
+{
+  pthread_t p1, p2;
+
+  if( argc != 2 )
+  {
+    fprintf( stderr, "usage: %s <string>\n", argv[0] );
+    return -1;
+  }
+
+  pthread_create( &p1, NULL, alpha, argv[1] );
+  pthread_create( &p2, NULL, numeric, argv[1] );
+
+  pthread_join( p1, NULL );
+  pthread_join( p2, NULL );
+}
+
+std::vector<std::string> split( std::string str, char delim )
+{
+  std::vector<std::string> split_str;
+  std::string              word;
+  unsigned int             i = 0;
+  while( i < str.length() )
+  {
+    if( str[i] == delim )
+    {
+      split_str.push_back( word );
+      word = "";
+    }
+    else
+    {
+      word += str[i];
+    }
+    i++;
+  }
+  split_str.push_back( word );
+  return split_str;
+}
+
+void * alpha( void * param )
+{
+  auto words = split( (char *) param );
+
+  for( std::string s : words )
+  {
+    if( isalpha( s[0] ) ) { fprintf( stdout, "alpha: %s\n", s.c_str() ); }
+  }
+
+  pthread_exit( 0 );
+}
+
+void * numeric( void * param )
+{
+  auto words = split( (char *) param );
+
+  for( std::string s : words )
+  {
+    if( isdigit( s[0] ) ) { fprintf( stdout, "numeric: %s\n", s.c_str() ); }
+  }
+
+  pthread_exit( 0 );
+}

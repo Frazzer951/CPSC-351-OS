@@ -28,8 +28,7 @@ void * fibonacci( void * param );
 
 int main( int argc, char * argv[] )
 {
-  pthread_t      tid;
-  pthread_attr_t attr;
+  pthread_t p1;
 
   if( argc != 2 )
   {
@@ -43,10 +42,9 @@ int main( int argc, char * argv[] )
     return -1;
   }
 
-  pthread_attr_init( &attr );
-  pthread_create( &tid, &attr, fibonacci, argv[1] );
+  pthread_create( &p1, NULL, fibonacci, argv[1] );
 
-  pthread_join( tid, NULL );
+  pthread_join( p1, NULL );
 
   printf( "Fibonacci sequence: " );
 
