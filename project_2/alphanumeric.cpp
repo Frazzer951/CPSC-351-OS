@@ -55,7 +55,7 @@ std::vector<std::string> split( std::string str, char delim )
   return split_str;
 }
 
-void * alpha( void * param )
+void * alpha( void * /*param*/ )
 {
   while( curIndex < splitStr.size() )
   {
@@ -68,7 +68,7 @@ void * alpha( void * param )
   pthread_exit( nullptr );
 }
 
-void * numeric( void * param )
+void * numeric( void * /*param*/ )
 {
   while( curIndex < splitStr.size() )
   {
