@@ -7,6 +7,7 @@
 std::string              str;
 std::vector<std::string> splitStr;
 int                      curIndex = 0;
+bool                     lock     = false;
 
 std::vector<std::string> split( std::string str, char delim = ' ' );
 void *                   alpha( void * param );
@@ -59,10 +60,13 @@ void * alpha( void * /*param*/ )
 {
   while( curIndex < splitStr.size() )
   {
+    while( lock ) {}
     if( curIndex < splitStr.size() && isalpha( splitStr[curIndex][0] ) != 0 )
     {
+      lock = true;
       fprintf( stdout, "alpha: %s\n", splitStr[curIndex].c_str() );
       curIndex++;
+      lock = false;
     }
   }
   pthread_exit( nullptr );
@@ -70,12 +74,15 @@ void * alpha( void * /*param*/ )
 
 void * numeric( void * /*param*/ )
 {
+  while( lock ) {}
   while( curIndex < splitStr.size() )
   {
     if( curIndex < splitStr.size() && isdigit( splitStr[curIndex][0] ) != 0 )
     {
+      lock = true;
       fprintf( stdout, "numeric: %s\n", splitStr[curIndex].c_str() );
       curIndex++;
+      lock = false;
     }
   }
   pthread_exit( nullptr );
