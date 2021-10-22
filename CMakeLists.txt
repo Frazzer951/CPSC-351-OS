@@ -10,6 +10,7 @@ include(ClangFormat)
 
 add_subdirectory(src/fork)
 add_subdirectory(src/getpid)
+add_subdirectory(src/misc)
 add_subdirectory(src/msqueue)
 add_subdirectory(src/pipe)
 add_subdirectory(src/popen)
