@@ -210,7 +210,8 @@ void remove_semaphore( const char * sem_name, sem_t * semaphore )
 // Main
 int main( int argc, const char * argv[] )
 {
-  pthread_t      producers[PRODUCERS], consumers[CONSUMERS];
+  pthread_t      producers[PRODUCERS];
+  pthread_t      consumers[CONSUMERS];
   const char *   max_consumersname  = "max_consumers";
   const char *   max_producersname  = "max_producers";
   const char *   deliveries_OKname  = "deliveries_OK";     // Empty buffer
