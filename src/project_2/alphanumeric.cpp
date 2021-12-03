@@ -74,9 +74,9 @@ void * alpha( void * /*param*/ )
 
 void * numeric( void * /*param*/ )
 {
-  while( lock ) {}
   while( curIndex < splitStr.size() )
   {
+    while( lock ) {}
     if( curIndex < splitStr.size() && isdigit( splitStr[curIndex][0] ) != 0 )
     {
       lock = true;
