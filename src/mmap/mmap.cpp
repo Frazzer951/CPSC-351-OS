@@ -1,8 +1,8 @@
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <fcntl.h>
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -33,7 +33,8 @@ int main( int argc, char ** argv )
     exit( 1 );
   }
 
-  struct stat stats;
+  struct stat stats
+  {};
   if( stat( argv[1], &stats ) == 0 ) cout << endl << "file size " << stats.st_size;
   else
     cout << "Unable to get file properties.\n";
@@ -43,11 +44,11 @@ int main( int argc, char ** argv )
   cout << endl << "page size is " << pagesize << "\n";
 
   /* map the file into memory */
-  char * data = (char *) mmap( NULL, pagesize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0 );
+  char * data = (char *) mmap( nullptr, pagesize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0 );
 
 
   /* Did the mapping succeed ? */
-  if( !data )
+  if( data == nullptr )
   {
     cout << "\n"
          << "mapping did not succeed"
