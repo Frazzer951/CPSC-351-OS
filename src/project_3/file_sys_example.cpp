@@ -11,10 +11,10 @@ using namespace std;
 
 int main( int argc, char * argv[] )
 {
-  int  in_fd;
-  int  out_fd;
-  int  rd_count;
-  int  wt_count;
+  int  in_fd    = 0;
+  int  out_fd   = 0;
+  int  rd_count = 0;
+  int  wt_count = 0;
   char buffer[BUF_SIZE];
   if( argc != 3 )
   {

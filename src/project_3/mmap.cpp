@@ -21,10 +21,11 @@ int main( int argc, char ** argv )
   const char * inFile  = argv[1];
   const char * outFile = argv[2];
 
-  struct stat srcStat;
-  int         pageSize = getpagesize();
-  int         srcFD    = open( inFile, O_RDONLY );
-  int         dstFD    = open( outFile, O_RDWR | O_CREAT | O_TRUNC, 0700 );
+  struct stat srcStat
+  {};
+  int pageSize = getpagesize();
+  int srcFD    = open( inFile, O_RDONLY );
+  int dstFD    = open( outFile, O_RDWR | O_CREAT | O_TRUNC, 0700 );
 
   if( srcFD < 0 )
   {
@@ -49,9 +50,9 @@ int main( int argc, char ** argv )
 
   for( int i = 0; i < srcStat.st_size; i += pageSize )
   {
-    char * srcData = (char *) mmap( NULL, pageSize, PROT_READ, MAP_SHARED, srcFD, i );
-    char * dstData = (char *) mmap( NULL, pageSize, PROT_WRITE, MAP_SHARED, dstFD, i );
-    if( !srcData || !dstData )
+    char * srcData = (char *) mmap( nullptr, pageSize, PROT_READ, MAP_SHARED, srcFD, i );
+    char * dstData = (char *) mmap( nullptr, pageSize, PROT_WRITE, MAP_SHARED, dstFD, i );
+    if( ( srcData == nullptr ) || ( dstData == nullptr ) )
     {
       cout << "Error mapping files" << endl;
       exit( 1 );
